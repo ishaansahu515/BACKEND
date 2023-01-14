@@ -14,7 +14,7 @@ app.use(bodyParser.json());//it tells the system that we have to use json or ret
 app.use("/",(req,res)=>{
    res.status(200).send("Api is running");
 })
-app.use(cors);
+app.use(cors());
 
 app.use('/uploads/images',express.static(path.join('uploads','images')));
 

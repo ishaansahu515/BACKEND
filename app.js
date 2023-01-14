@@ -18,10 +18,6 @@ app.use('/uploads/images',express.static(path.join('uploads','images')));
 app.use('/api/places', placesRoutes); // => /api/places...
 app.use('/api/users', usersRoutes);
 
-app.use("/",(req,res)=>{
-   res.status(200).send("Api is running");
-})
-
 app.use((res, req, next) => {
   const error = new HttpError('could not find the route', 404);
   throw error; //we can throw error becoz of synchronous nature. and nothing speaks against throwing it.

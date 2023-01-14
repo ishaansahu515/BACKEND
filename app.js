@@ -15,18 +15,12 @@ app.use(bodyParser.json());//it tells the system that we have to use json or ret
 
 app.use('/uploads/images',express.static(path.join('uploads','images')));
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'Origin,X-Requested-With,Content-Type,Accept,Authorization'
-  );
-  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PATCH,DELETE');
-  next();
-});
-
 app.use('/api/places', placesRoutes); // => /api/places...
 app.use('/api/users', usersRoutes);
+
+app.use("/",(req,res)=>{
+   res.status(200).send("Api is running");
+})
 
 app.use((res, req, next) => {
   const error = new HttpError('could not find the route', 404);
@@ -59,7 +53,5 @@ mongoose
     console.log(err);
   });
 
-app.use("/",(req,res)=>{
-   res.status(200).send("Api is running");
-})
+
 

@@ -1,9 +1,9 @@
 const fs = require('fs');
-const path = require('path');
+const path=require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const cors = require('cors');
+const cors=require('cors');
 const placesRoutes = require('./routes/places-routes');
 const usersRoutes = require('./routes/users-routes');
 const HttpError = require('./models/http-error');
@@ -11,12 +11,12 @@ const app = express();
 
 app.use(bodyParser.json());//it tells the system that we have to use json or returns middleware that only parses JSON
 
-app.use("/", (req, res) => {
-  res.status(200).send("Api is running");
+app.use("/",(req,res)=>{
+   res.status(200).send("Api is running");
 })
 app.use(cors());
 
-app.use('/uploads/images', express.static(path.join('uploads', 'images')));
+app.use('/uploads/images',express.static(path.join('uploads','images')));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -39,7 +39,7 @@ app.use((res, req, next) => {
 app.use((error, req, res, next) => {
 
   if (req.file) {
-    fs.unlink(req.file.path, err => {
+    fs.unlink(req.file.path,err=>{
       console.log(err);
     });
   }
@@ -56,8 +56,8 @@ mongoose
   .set("strictQuery", false)
   .connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.t3rtmhc.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`)
   .then(() => {
-    app.listen(5001);
-    console.log(`listening on port 5001`);
+    app.listen(process.env.PORT);
+    console.log(`listening on port ${PORT}`);
   })
   .catch(err => {
     console.log(err);

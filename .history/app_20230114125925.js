@@ -56,8 +56,8 @@ mongoose
   .set("strictQuery", false)
   .connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.t3rtmhc.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`)
   .then(() => {
-    app.listen(5001);
-    console.log(`listening on port 5001`);
+    app.listen(500);
+    console.log(`listening on port ${PORT}`);
   })
   .catch(err => {
     console.log(err);

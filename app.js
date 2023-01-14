@@ -13,10 +13,6 @@ app.use(cors());
 
 app.use(bodyParser.json());//it tells the system that we have to use json or returns middleware that only parses JSON
 
-app.use("/",(req,res)=>{
-   res.status(200).send("Api is running");
-})
-
 app.use('/uploads/images',express.static(path.join('uploads','images')));
 
 app.use((req, res, next) => {
@@ -62,4 +58,8 @@ mongoose
   .catch(err => {
     console.log(err);
   });
+
+app.use("/",(req,res)=>{
+   res.status(200).send("Api is running");
+})
 

@@ -9,6 +9,8 @@ const usersRoutes = require('./routes/users-routes');
 const HttpError = require('./models/http-error');
 const app = express();
 
+app.use(cors());
+
 app.use(bodyParser.json());//it tells the system that we have to use json or returns middleware that only parses JSON
 
 app.use("/", (req, res) => {
@@ -62,4 +64,6 @@ mongoose
   .catch(err => {
     console.log(err);
   });
+
+
 
